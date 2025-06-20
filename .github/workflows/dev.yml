@@ -1,0 +1,55 @@
+name: Add to Exchange and Deploy to Sandbox2
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ master ]
+
+env:
+  APPID: ${{ secrets.mule_connected_app_sand_id }}
+  APPSECRET: ${{ secrets.mule_connected_app_sand_secret }}
+  ENVID: ${{ secrets.sandbox_client_id }}
+  ENVSECRET: ${{ secrets.sandbox_client_secret }}
+
+jobs:
+  exchangedep:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout this repo
+      uses: actions/checkout@v3
+    - name: Cache dependencies
+      uses: actions/cache@v3
+      with:
+        path: ~/.m2/repository
+        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+        restore-keys: |
+          ${{ runner.os }}-maven-
+    - name: maven-settings-xml-action
+      uses: whelk-io/maven-settings-xml-action@v20
+      with:
+        repositories: '[{ "id": "anypoint-exchange-v3", "url": "https://maven.anypoint.mulesoft.com/api/v3/maven" }]'
+        servers: '[{ "id": "anypoint-exchange-v3", "username": "~~~Client~~~", "password": "${env.APPID}~?~${env.APPSECRET}" }]'
+    - name: Deploy to Exchange
+      working-directory: ./contract-api
+      run: |
+        artifactName=$(ls *.jar | head -1)
+        mvn clean deploy
+
+  deploy:
+    needs: exchangedep
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout this repo
+      uses: actions/checkout@v3
+    - name: Deploy to Sandbox
+      working-directory: ./contract-api
+      run: |
+        mvn clean deploy -DmuleDeploy \
+         -Dapp.name="contract-api" \
+         -Denvironment="Sandbox" \
+         -Dtarget.env="dev" \
+         -Danypoint.psname="Cloudhub-US-East-2"  \
+         -Dconnected.app.id="$APPID" \
+         -Dconnected.app.secret="$APPSECRET" \
+         -Denv.client.id="$ENVID" \
+         -Denv.client.secret="$ENVSECRET"
