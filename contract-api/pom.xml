@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>52ad756c-1218-4d9e-ae79-ec459ee058e9</groupId>
-	<artifactId>dev-agent</artifactId>
+	<artifactId>contract-api</artifactId>
 	<version>${mule.app.ver}</version>
 	<packaging>mule-application</packaging>
 
