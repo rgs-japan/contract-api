@@ -44,7 +44,7 @@ jobs:
     - name: Deploy to Sandbox
       working-directory: ./contract-api
       run: |
-        mvn clean deploy -e -DmuleDeploy \
+        mvn clean deploy -e -X -DmuleDeploy \
          -Dapp.name="contract-api" \
          -Denvironment="Sandbox" \
          -Dtarget.env="dev" \
