@@ -1,9 +1,9 @@
-name: Add to Exchange and Deploy to Sandbox2
+name: Add to Exchange and Deploy to Sandbox
 
 on:
-  workflow_dispatch:
   push:
-    branches: [ master ]
+    tags:
+      - "*"
 
 env:
   APPID: ${{ secrets.mule_connected_app_sand_id }}
@@ -53,3 +53,4 @@ jobs:
          -Dconnected.app.secret="$APPSECRET" \
          -Denv.client.id="$ENVID" \
          -Denv.client.secret="$ENVSECRET"
+
