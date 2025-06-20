@@ -33,7 +33,7 @@ jobs:
       working-directory: ./contract-api
       run: |
         artifactName=$(ls *.jar | head -1)
-        mvn clean deploy -X -e
+        mvn clean deploy -e
 
   deploy:
     needs: exchangedep
@@ -44,7 +44,7 @@ jobs:
     - name: Deploy to Sandbox
       working-directory: ./contract-api
       run: |
-        mvn clean deploy -DmuleDeploy \
+        mvn clean deploy -e -DmuleDeploy \
          -Dapp.name="contract-api" \
          -Denvironment="Sandbox" \
          -Dtarget.env="dev" \
