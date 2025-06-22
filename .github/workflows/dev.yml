@@ -30,7 +30,7 @@ jobs:
         repositories: '[{ "id": "anypoint-exchange-v3", "url": "https://maven.anypoint.mulesoft.com/api/v3/maven" }]'
         servers: '[{ "id": "anypoint-exchange-v3", "username": "~~~Client~~~", "password": "${env.APPID}~?~${env.APPSECRET}" }]'
     - name: Run MUnit tests
-      working-directory: ./contract-api/contract-api
+      working-directory: ./contract-api/
       run: |
         mvn clean test -e
 
