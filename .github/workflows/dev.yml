@@ -3,7 +3,7 @@ name: Add to Exchange and Deploy to Sandbox
 on:
   push:
     tags:
-      - "*"
+      - 'production_blue_[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]_[0-9][0-9]'
 
 env:
   APPID: ${{ secrets.mule_connected_app_sand_id }}
@@ -44,7 +44,7 @@ jobs:
     - name: Deploy to Sandbox
       working-directory: ./contract-api
       run: |
-        mvn clean deploy -e -DmuleDeploy \
+        mvn clean deploy -e -X -DmuleDeploy \
          -Dapp.name="contract-api" \
          -Denvironment="Sandbox" \
          -Dtarget.env="dev" \
