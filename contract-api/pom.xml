@@ -74,6 +74,8 @@
 				</executions>
 				<configuration>
 			        <coverage>
+						<runtimeProduct>MULE</runtimeProduct>
+
 			            <runCoverage>true</runCoverage>
 			            <failBuild>true</failBuild>
 			
