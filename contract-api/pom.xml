@@ -73,8 +73,17 @@
 					</execution>
 				</executions>
 				<configuration>
-					<failBuild>false</failBuild>
-					<runCoverage>false</runCoverage>
+                      <coverage>
+                          <runCoverage>true</runCoverage>
+                          <failBuild>false</failBuild>
+                          <requiredApplicationCoverage>100</requiredApplicationCoverage>
+                          <requiredResourceCoverage>100</requiredResourceCoverage>
+                          <requiredFlowCoverage>100</requiredFlowCoverage>
+                          <formats>
+                              <format>console</format>
+                              <format>html</format>
+                          </formats>
+                      </coverage>
 				</configuration>
 			</plugin>
 		</plugins>

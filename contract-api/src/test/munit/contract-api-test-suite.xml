@@ -13,7 +13,7 @@
 			<flow-ref doc:name="Flow-ref to contract-apiFlow" doc:id="44c3b94c-e727-400d-8067-358c1213d41c" name="contract-apiFlow"/>
 		</munit:execution>
 		<munit:validation >
-			<munit-tools:assert-that doc:name="Assert that" doc:id="cdb3a500-3dcd-418f-a3ee-386e60bbab25" is="#[MunitTools::equalTo('hi flow0')]" expression="#[payload.msg]" message="munit failed."/>
+			<munit-tools:assert-that doc:name="Assert that" doc:id="cdb3a500-3dcd-418f-a3ee-386e60bbab25" is="#[MunitTools::equalTo('hi flow')]" expression="#[payload.msg]" message="munit failed."/>
 		</munit:validation>
 	</munit:test>
 	<munit:test name="contract-api-test-suite-contract-apiFlow1Test" doc:id="03c7217e-fb2a-4a71-b127-fc86f6f33c3e" description="Test">
