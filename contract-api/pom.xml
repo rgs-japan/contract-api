@@ -74,19 +74,17 @@
 				</executions>
 				<configuration>
 					<runtimeProduct>MULE</runtimeProduct>
-			        <coverage>
-			            <runCoverage>true</runCoverage>
-			            <failBuild>true</failBuild>
-			
-			            <requiredApplicationCoverage>100</requiredApplicationCoverage>
-			            <requiredResourceCoverage>100</requiredResourceCoverage>
-			            <requiredFlowCoverage>100</requiredFlowCoverage>
-			
-			            <formats>
-			                <format>console</format>
-			                <format>html</format>
-			            </formats>
-			        </coverage>
+					<coverage>
+						<runCoverage>true</runCoverage>
+						<failBuild>true</failBuild>
+						<requiredApplicationCoverage>100</requiredApplicationCoverage>
+						<requiredResourceCoverage>100</requiredResourceCoverage>
+						<requiredFlowCoverage>100</requiredFlowCoverage>
+						<formats>
+							<format>console</format>
+							<format>html</format>
+						</formats>
+					</coverage>
 				</configuration>
 			</plugin>
 		</plugins>
@@ -103,12 +101,6 @@
 			<groupId>org.mule.connectors</groupId>
 			<artifactId>mule-sockets-connector</artifactId>
 			<version>1.2.5</version>
-			<classifier>mule-plugin</classifier>
-		</dependency>
-		<dependency>
-			<groupId>com.mulesoft.modules</groupId>
-			<artifactId>mule-secure-configuration-property-module</artifactId>
-			<version>1.2.7</version>
 			<classifier>mule-plugin</classifier>
 		</dependency>
 		<dependency>
