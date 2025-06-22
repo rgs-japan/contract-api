@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xsi:schemaLocation="
+		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd">
+	<munit:config name="contract-api-test-suite.xml" />
+	<munit:test name="contract-api-test-suite-contract-apiFlowTest" doc:id="be59cf98-d6b8-43d0-b9e6-27bb7092d102" description="Test">
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to contract-apiFlow" doc:id="44c3b94c-e727-400d-8067-358c1213d41c" name="contract-apiFlow"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="cdb3a500-3dcd-418f-a3ee-386e60bbab25" is="#[MunitTools::equalTo('hi flow0')]" expression="#[payload.msg]" message="munit failed."/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="contract-api-test-suite-contract-apiFlow1Test" doc:id="03c7217e-fb2a-4a71-b127-fc86f6f33c3e" description="Test">
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to contract-apiFlow1" doc:id="46ce1fbf-f654-4ffc-925a-7f0c104b1a34" name="contract-apiFlow1"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="8b6c4d56-4d40-4144-9290-30f9710ecdd8" is="#[MunitTools::equalTo('hi flow1')]" expression="#[payload.msg]"/>
+		</munit:validation>
+	</munit:test>
+
+
+</mule>
