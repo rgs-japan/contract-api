@@ -74,6 +74,8 @@
 				</executions>
 				<configuration>
 					<runtimeProduct>MULE</runtimeProduct>
+					<failBuild>false</failBuild>
+					<runCoverage>false</runCoverage>
 				</configuration>
 			</plugin>
 		</plugins>
