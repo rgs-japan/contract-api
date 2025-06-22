@@ -32,7 +32,7 @@ jobs:
     - name: Run MUnit tests
       working-directory: ./contract-api
       run: |
-        mvn clean test -e
+        mvn clean test -Dmunit.test=contract-api-test-suite -e
 
   build-to-exchange:
     needs: munit-test
