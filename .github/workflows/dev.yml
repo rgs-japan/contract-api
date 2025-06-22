@@ -28,7 +28,14 @@ jobs:
       uses: whelk-io/maven-settings-xml-action@v20
       with:
         repositories: '[{ "id": "anypoint-exchange-v3", "url": "https://maven.anypoint.mulesoft.com/api/v3/maven" }]'
-        servers: '[{ "id": "anypoint-exchange-v3", "username": "~~~Client~~~", "password": "${env.APPID}~?~${env.APPSECRET}" }]'
+        servers: >
+          [
+            {
+              "id": "anypoint-exchange-v3",
+              "username": "~~~Client~~~",
+              "password": "${{ env.APPID }}~?~${{ env.APPSECRET }}"
+            }
+          ]
         profiles: >
             [
               {
