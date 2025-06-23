@@ -27,7 +27,14 @@ jobs:
     - name: maven-settings-xml-action
       uses: whelk-io/maven-settings-xml-action@v22
       with:
-        servers: '[{ "id": "anypoint-exchange-v3", "username": "~~~Client~~~", "password": "${env.APPID}~?~${env.APPSECRET}" }]'
+        servers: |
+          [
+            {
+              "id": "anypoint-exchange-v3",
+              "username": "~~~Client~~~",
+              "password": "${env.APPID}~?~${env.APPSECRET}"
+            }
+          ]
         profiles: |
           [
             {
