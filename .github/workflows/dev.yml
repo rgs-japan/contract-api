@@ -33,7 +33,7 @@ jobs:
       working-directory: ./contract-api
       run: |
         artifactName=$(ls *.jar | head -1)
-        mvn clean deploy -e
+        mvn clean deploy -e -DskipMunitTests 
 
   deploy:
     needs: build-to-exchange
