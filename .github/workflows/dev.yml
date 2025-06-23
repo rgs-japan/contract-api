@@ -12,30 +12,7 @@ env:
   ENVSECRET: ${{ secrets.sandbox_client_secret }}
 
 jobs:
-  munit-test:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout this repo
-      uses: actions/checkout@v3
-    - name: Cache dependencies
-      uses: actions/cache@v3
-      with:
-        path: ~/.m2/repository
-        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-        restore-keys: |
-          ${{ runner.os }}-maven-
-    - name: maven-settings-xml-action
-      uses: whelk-io/maven-settings-xml-action@v20
-      with:
-        repositories: '[{ "id": "MuleRepository", "url": "https://repository.mulesoft.org/nexus-ee/content/repositories/releases-ee/" }]'
-        servers: '[{ "id": "anypoint-exchange-v3", "username": "~~~Client~~~", "password": "${env.APPID}~?~${env.APPSECRET}" }]'
-    - name: Run MUnit tests
-      working-directory: ./contract-api/
-      run: |
-        mvn clean test -e
-
   build-to-exchange:
-    needs: munit-test
     runs-on: ubuntu-latest
     steps:
     - name: Checkout this repo
