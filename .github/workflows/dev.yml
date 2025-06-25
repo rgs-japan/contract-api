@@ -20,8 +20,8 @@ jobs:
     - name: Setup Java
       uses: actions/setup-java@v4.7.1
       with:
-        distribution: 'temurin'
-        java-version: '17.0.12'
+        distribution: 'temurin1'
+        java-version: '17.0.121111'
     - name: Setup Maven
       run: |
         MAVEN_VERSION=3.9.6
