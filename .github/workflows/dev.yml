@@ -27,11 +27,11 @@ jobs:
         MAVEN_VERSION=3.9.6
         curl -fsSL https://archive.apache.org/dist/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz | tar -xz -C /opt
         echo "/opt/apache-maven-${MAVEN_VERSION}/bin" >> $GITHUB_PATH
-    - name: Show Ubuntu version
+    - name: Show Ubuntu version (Debug only. will be removed later.)
       run: cat /etc/os-release
-    - name: Show Java version
+    - name: Show Java version (Debug only. will be removed later.)
       run: java -version
-    - name: Show Maven version
+    - name: Show Maven version (Debug only. will be removed later.)
       run: mvn -version
     - name: maven-settings-xml-action
       uses: whelk-io/maven-settings-xml-action@v22
@@ -48,14 +48,24 @@ jobs:
     needs: build-to-exchange
     runs-on: ubuntu-latest
     steps:
-    - name: Show Ubuntu version
-      run: cat /etc/os-release
-    - name: Show Java version
-      run: java -version
-    - name: Show Maven version
-      run: mvn -version
     - name: Checkout this repo
       uses: actions/checkout@v4.2.2
+    - name: Setup Java
+      uses: actions/setup-java@v4.7.1
+      with:
+        distribution: 'temurin'
+        java-version: '17.0.12'
+    - name: Setup Maven
+      run: |
+        MAVEN_VERSION=3.9.6
+        curl -fsSL https://archive.apache.org/dist/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz | tar -xz -C /opt
+        echo "/opt/apache-maven-${MAVEN_VERSION}/bin" >> $GITHUB_PATH
+    - name: Show Ubuntu version (Debug only. will be removed later.)
+      run: cat /etc/os-release
+    - name: Show Java version (Debug only. will be removed later.)
+      run: java -version
+    - name: Show Maven version (Debug only. will be removed later.)
+      run: mvn -version
     - name: Deploy to Sandbox
       working-directory: ./contract-api
       run: |
