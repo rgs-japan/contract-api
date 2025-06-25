@@ -20,8 +20,8 @@ jobs:
     - name: Setup Java
       uses: actions/setup-java@v4.7.1
       with:
-        distribution: 'temurin1'
-        java-version: '17.0.121111'
+        distribution: 'temurin'
+        java-version: '17.0.12'
     - name: Setup Maven
       run: |
         MAVEN_VERSION=3.9.6
@@ -36,7 +36,6 @@ jobs:
     - name: maven-settings-xml-action
       uses: whelk-io/maven-settings-xml-action@v22
       with:
-        repositories: '[{ "id": "anypoint-exchange-v3", "url": "https://maven.anypoint.mulesoft.com/api/v3/maven" }]'
         servers: '[{ "id": "anypoint-exchange-v3", "username": "~~~Client~~~", "password": "${env.APPID}~?~${env.APPSECRET}" }]'
     - name: Deploy to Exchange
       working-directory: ./contract-api
