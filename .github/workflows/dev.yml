@@ -13,10 +13,10 @@ env:
 
 jobs:
   build-to-exchange:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
     - name: Checkout this repo
-      uses: actions/checkout@v4
+      uses: actions/checkout@v4.2.2
     - name: maven-settings-xml-action
       uses: whelk-io/maven-settings-xml-action@v22
       with:
@@ -33,7 +33,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout this repo
-      uses: actions/checkout@v4
+      uses: actions/checkout@v4.2.2
     - name: Deploy to Sandbox
       working-directory: ./contract-api
       run: |
