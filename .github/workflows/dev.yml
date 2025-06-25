@@ -22,16 +22,6 @@ jobs:
       with:
         distribution: 'temurin'
         java-version: '17.0.12'
-    - name: Debug Java path
-      run: |
-        echo "JAVA_HOME=$JAVA_HOME"
-        echo "PATH=$PATH"
-        which java
-        java -version
-    - name: Setup Maven
-      uses: s4u/setup-maven-action@v1.18.0
-      with:
-        maven-version: 3.9.6
     - name: Show Ubuntu version
       run: cat /etc/os-release
     - name: Show Java version
