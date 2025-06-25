@@ -33,10 +33,6 @@ jobs:
       run: java -version
     - name: Show Maven version (Debug only. will be removed later.)
       run: mvn -version
-    - name: maven-settings-xml-action
-      uses: whelk-io/maven-settings-xml-action@v22
-      with:
-        servers: '[{ "id": "anypoint-exchange-v3", "username": "~~~Client~~~", "password": "${env.APPID}~?~${env.APPSECRET}" }]'
     - name: Deploy to Exchange
       working-directory: ./contract-api
       run: |
