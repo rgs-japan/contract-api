@@ -15,17 +15,17 @@ jobs:
   build-to-exchange:
     runs-on: ubuntu-22.04
     steps:
-    - name: Setup Maven
-      uses: s4u/setup-maven-action@v1.18.0
-      with:
-        maven-version: 3.9.6
+    - name: Checkout this repo
+      uses: actions/checkout@v4.2.2
     - name: Setup Java
       uses: actions/setup-java@v4.7.1
       with:
         distribution: 'temurin'
         java-version: '17.0.12'
-    - name: Checkout this repo
-      uses: actions/checkout@v4.2.2
+    - name: Setup Maven
+      uses: s4u/setup-maven-action@v1.18.0
+      with:
+        maven-version: 3.9.6
     - name: Show Ubuntu version
       run: cat /etc/os-release
     - name: Show Java version
