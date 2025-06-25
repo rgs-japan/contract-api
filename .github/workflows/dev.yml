@@ -17,6 +17,12 @@ jobs:
     steps:
     - name: Checkout this repo
       uses: actions/checkout@v4.2.2
+    - name: Show Ubuntu version
+      run: cat /etc/os-release
+    - name: Show Java version
+      run: java -version
+    - name: Show Maven version
+      run: mvn -version
     - name: maven-settings-xml-action
       uses: whelk-io/maven-settings-xml-action@v22
       with:
