@@ -60,7 +60,10 @@ jobs:
     - name: Setup Maven
       run: |
         MAVEN_VERSION=3.9.6
-        curl -fsSL https://archive.apache.org/dist/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz | tar -xz -C /opt
+        for i in {1..3}; do
+          curl -fsSL https://archive.apache.org/dist/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz \
+            | tar -xz -C /opt && break || sleep 10
+        done
         echo "/opt/apache-maven-${MAVEN_VERSION}/bin" >> $GITHUB_PATH
     - name: Show Ubuntu version (Debug only. will be removed later.)
       run: cat /etc/os-release
