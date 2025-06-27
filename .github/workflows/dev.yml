@@ -24,7 +24,6 @@ jobs:
       run: |
         TAG_NAME=${GITHUB_REF##*/}
         echo "Current tag: $TAG_NAME"
-        
         COMMIT_SHA=$(git rev-list -n 1 "$TAG_NAME")
         if git merge-base --is-ancestor "$COMMIT_SHA" origin/master; then
           echo "Tag is from master"
