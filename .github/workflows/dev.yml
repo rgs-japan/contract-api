@@ -12,7 +12,52 @@ env:
   ENVSECRET: ${{ secrets.sandbox_client_secret }}
 
 jobs:
+  munit-test:
+    runs-on: ubuntu-24.04
+    steps:
+    - name: Checkout this repo
+      uses: actions/checkout@v4.2.2
+    - name: Setup Java
+      uses: actions/setup-java@v4.7.1
+      with:
+        distribution: 'temurin'
+        java-version: '17.0.12'
+    - name: Setup Maven
+      run: |
+        MAVEN_VERSION=3.9.6
+        curl --retry 5 --retry-delay 10 -fsSL https://archive.apache.org/dist/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz | tar -xz -C /opt
+        echo "/opt/apache-maven-${MAVEN_VERSION}/bin" >> $GITHUB_PATH
+    - name: Show Ubuntu version (Debug only. will be removed later.)
+      run: cat /etc/os-release
+    - name: Show Java version (Debug only. will be removed later.)
+      run: java -version
+    - name: Show Maven version (Debug only. will be removed later.)
+      run: mvn -version
+    - name: maven-settings-xml-action
+      uses: whelk-io/maven-settings-xml-action@v22
+      with:
+        repositories: |
+                [
+                  {
+                    "id": "MuleRepository",
+                    "name": "MuleRepository",
+                    "url": "https://repository.mulesoft.org/nexus-ee/content/repositories/releases-ee/",
+                    "releases": {
+                      "enabled": "true"
+                    },
+                    "snapshots": {
+                      "enabled": "true"
+                    }
+                  }
+                ]
+        servers: '[{ "id": "anypoint-exchange-v3", "username": "~~~Client~~~", "password": "${env.APPID}~?~${env.APPSECRET}" }]'
+    - name: Run MUnit tests
+      working-directory: ./contract-api
+      run: |
+        mvn clean test -e
+
   build-to-exchange:
+    needs: munit-test
     runs-on: ubuntu-24.04
     steps:
     - name: Checkout this repo
