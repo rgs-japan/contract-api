@@ -46,7 +46,13 @@
 						<replicas>1</replicas>
 						<vCores>0.1</vCores>
 						<deploymentSettings>
-							<generateDefaultPublicUrl>true</generateDefaultPublicUrl>
+							<http>
+							<inbound>
+								<publicUrl>http://www1.test.com/contract-api,http://www2.test.com/contract-api,http://www3.test.com/contract-api,http://www4.test.com/contract-api</publicUrl>
+								<forwardSslSession>true</forwardSslSession>
+								<lastMileSecurity>true</lastMileSecurity>
+							</inbound>
+							</http>
 						</deploymentSettings>
 						<properties>
 							<target.env>${target.env}</target.env>
