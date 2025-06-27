@@ -17,6 +17,21 @@ jobs:
     steps:
     - name: Checkout this repo
       uses: actions/checkout@v4.2.2
+      with:
+          fetch-depth: 0
+    - name: Check if tag is from master branch
+      id: check_branch
+      run: |
+        TAG_NAME=${GITHUB_REF##*/}
+        echo "Current tag: $TAG_NAME"
+        
+        COMMIT_SHA=$(git rev-list -n 1 "$TAG_NAME")
+        if git merge-base --is-ancestor "$COMMIT_SHA" origin/master; then
+          echo "Tag is from master"
+        else
+          echo "Tag is not from master. Exiting."
+          exit 1
+        fi
     - name: Setup Java
       uses: actions/setup-java@v4.7.1
       with:
