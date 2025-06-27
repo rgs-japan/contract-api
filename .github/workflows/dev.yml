@@ -34,8 +34,22 @@ jobs:
     - name: Show Maven version (Debug only. will be removed later.)
       run: mvn -version
     - name: maven-settings-xml-action
-      uses: whelk-io/maven-settings-xml-action@v20
+      uses: whelk-io/maven-settings-xml-action@v22
       with:
+        repositories: |
+                [
+                  {
+                    "id": "MuleRepository",
+                    "name": "MuleRepository",
+                    "url": "https://repository.mulesoft.org/nexus-ee/content/repositories/releases-ee/",
+                    "releases": {
+                      "enabled": "true"
+                    },
+                    "snapshots": {
+                      "enabled": "true"
+                    }
+                  }
+                ]
         servers: '[{ "id": "anypoint-exchange-v3", "username": "~~~Client~~~", "password": "${env.APPID}~?~${env.APPSECRET}" }]'
     - name: Deploy to Exchange
       working-directory: ./contract-api
