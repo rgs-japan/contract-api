@@ -6,7 +6,7 @@
 	<artifactId>contract-api</artifactId>
 	<version>${mule.app.ver}</version>
 	<packaging>mule-application</packaging>
-
+	
 	<name>contract-api</name>
 
 	<properties>
