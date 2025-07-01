@@ -7,7 +7,7 @@
 	<version>${mule.app.ver}</version>
 	<packaging>mule-application</packaging>
 
-	<name>contract-api</name>
+	<name>contract-api</name> 
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
