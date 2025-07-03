@@ -73,6 +73,8 @@ jobs:
   build-to-exchange:
     needs: munit-test
     runs-on: ubuntu-24.04
+    environment:
+      name: production_1st_approver
     steps:
     - name: Checkout this repo
       uses: actions/checkout@v4.2.2
