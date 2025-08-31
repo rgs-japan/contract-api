@@ -11,6 +11,7 @@ http://www.mulesoft.org/schema/mule/secure-properties http://www.mulesoft.org/sc
 	<secure-properties:config name="Secure_Properties_Config" doc:name="Secure Properties Config" doc:id="98a738ac-d1b0-4cec-9001-65d000830c17" file="${target.env}-secure-config.yaml" key="${mule.key}" >
 		<secure-properties:encrypt algorithm="Blowfish" />
 	</secure-properties:config>
+	<global-property doc:name="Global Property" doc:id="e20c3df2-ae9b-4ca1-a0d3-0ae5622f7714" name="mule.key" value="123" />
 	<flow name="raml-01-main">
         <http:listener config-ref="raml-01-httpListenerConfig" path="/api/*">
             <http:response statusCode="#[vars.httpStatus default 200]">
