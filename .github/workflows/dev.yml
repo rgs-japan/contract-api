@@ -146,7 +146,7 @@ jobs:
         mvn clean deploy -e -DmuleDeploy -DskipMunitTests \
          -Dapp.name="contract-api" \
          -Denvironment="Sandbox" \
-         -Dtarget.env="dev" \
+         -Dtarget.env="local" \
          -Danypoint.psname="Cloudhub-US-East-2"  \
          -Dconnected.app.id="$APPID" \
          -Dconnected.app.secret="$APPSECRET" \
