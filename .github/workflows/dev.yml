@@ -113,7 +113,7 @@ jobs:
     - name: maven-settings-xml-action
       uses: whelk-io/maven-settings-xml-action@v22
       with:
-        servers: '[{ "id": "anypoint-exchange-v3", "username": "~~~Client~~~", "password": "${env.CONNECTED_APPID}~?~${env.CONNECTED_APPSECRET}" }]'
+        servers: '[{ "id": "anypoint-exchange-v3", "username": "~~~Client~~~", "password": "${env.APPID}~?~${env.APPSECRET}" }]'
     - name: Deploy to Sandbox
       working-directory: ./contract-api
       run: |
