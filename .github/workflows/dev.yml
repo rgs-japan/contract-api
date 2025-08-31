@@ -10,6 +10,7 @@ env:
   APPSECRET: ${{ secrets.mule_connected_app_sand_secret }}
   ENVID: ${{ secrets.sandbox_client_id }}
   ENVSECRET: ${{ secrets.sandbox_client_secret }}
+  MULEKEY: ${{ secrets.mule_key }}
 
 jobs:
   munit-test:
@@ -126,3 +127,4 @@ jobs:
          -Dconnected.app.secret="$APPSECRET" \
          -Denv.client.id="$ENVID" \
          -Denv.client.secret="$ENVSECRET"
+         -Dmule.key="$MULEKEY"
