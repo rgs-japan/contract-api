@@ -4,7 +4,7 @@
 
 	<groupId>3fe32aba-c302-46fc-9f15-b5c1433a251f</groupId>
 	<artifactId>contract-api</artifactId>
-	<version>1.0.2-SNAPSHOT</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<packaging>mule-application</packaging>
 
 	<name>contract-api</name>

@@ -6,8 +6,7 @@ http://www.mulesoft.org/schema/mule/api-gateway http://www.mulesoft.org/schema/m
     </http:listener-config>
     <apikit:config name="raml-01-config" api="resource::3fe32aba-c302-46fc-9f15-b5c1433a251f:raml-01:1.0.1:raml:zip:raml-01.raml" outboundHeadersMapName="outboundHeaders" httpStatusVarName="httpStatus" />
     <configuration-properties doc:name="Configuration properties" doc:id="4f8468a1-b41f-4718-9834-82f6b742e624" file="${target.env}-config.yaml" />
-	<global-property doc:name="Global Property" doc:id="9e0924a7-deb0-4239-a39f-f60a952229be" name="target.env" value="stag" />
-	<api-gateway:autodiscovery apiId="20495346" ignoreBasePath="true" doc:name="API Autodiscovery" doc:id="36666260-d745-4120-874b-f35db85f3a9a" flowRef="raml-01-main" />
+	<global-property doc:name="Global Property" doc:id="3d076d21-09bc-4cf7-9a3d-378db2c71778" name="target.env" value="local" />
 	<flow name="raml-01-main">
         <http:listener config-ref="raml-01-httpListenerConfig" path="/api/*">
             <http:response statusCode="#[vars.httpStatus default 200]">
