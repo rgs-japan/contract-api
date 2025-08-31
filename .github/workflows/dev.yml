@@ -126,5 +126,5 @@ jobs:
          -Dconnected.app.id="$APPID" \
          -Dconnected.app.secret="$APPSECRET" \
          -Denv.client.id="$ENVID" \
-         -Denv.client.secret="$ENVSECRET"
+         -Denv.client.secret="$ENVSECRET" \
          -Dmule.key="$MULEKEY"
