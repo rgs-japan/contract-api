@@ -45,5 +45,3 @@ target/
 .mule/
 .DS_Store
 velocity.log
-
-/reports/
