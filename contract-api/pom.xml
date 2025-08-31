@@ -48,7 +48,7 @@
 						<deploymentSettings>
 							<http>
 							<inbound>
-								<publicUrl>http://www1.test.com/contract-api,http://www2.test.com/contract-api,http://www3.test.com/contract-api,http://www4.test.com/contract-api</publicUrl>
+								<publicUrl></publicUrl>
 							</inbound>
 							</http>
 						</deploymentSettings>
