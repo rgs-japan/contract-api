@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="bc977ee1-16c0-4ace-bb56-b5544b0e94d6" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="contract-apiFlow" doc:id="75e61721-8037-47ef-a0fc-50e01de5f4f1" >
+		<http:listener doc:name="Listener" doc:id="19397417-cfb0-441e-bfad-c4c970e2682c" config-ref="HTTP_Listener_config" path="/go"/>
+		<ee:transform doc:name="Transform Message" doc:id="024e3a9b-d726-4853-bb8d-102ee40f078b" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+        msg: "hi flow",
+        version: p('muleAppVer'),
+        deployment: p('target.env'),
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="contract-apiFlow1" doc:id="f134f75a-0263-421e-afac-bf1c1cf4d381" >
+		<http:listener doc:name="Listener" doc:id="8193739a-bc57-4d70-bb1e-efe58b81e614" config-ref="HTTP_Listener_config" path="/go2"/>
+		<ee:transform doc:name="Transform Message" doc:id="5f44dc9f-8755-4493-b6fa-d7b28ffae393" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+        msg: "hi flow1",
+        version: p('muleAppVer'),
+        deployment: p('target.env'),
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="contract-apiFlow2" doc:id="b87b9dc4-df66-4cff-815c-0b126d87eb41" >
+		<http:listener doc:name="Listener" doc:id="fe614bc5-5e2e-48c2-b0f0-476e7538676a" config-ref="HTTP_Listener_config" path="/go3"/>
+		<ee:transform doc:name="Transform Message" doc:id="bb7f8487-5863-44d3-a9fc-a2a2d7b80cc6" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+        msg: "hi flow2",
+        version: p('muleAppVer'),
+        deployment: p('target.env'),
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+</mule>
