@@ -23,7 +23,7 @@ output application/json
 			</ee:message>
 		</ee:transform>
 	</flow>
-	<flow name="contract-apiFlow1" doc:id="f134f75a-0263-421e-afac-bf1c1cf4d388" >
+	<flow name="contract-apiFlow1" doc:id="f134f75a-0263-421e-afac-bf1c1cf4d381" >
 		<http:listener doc:name="Listener" doc:id="8193739a-bc57-4d70-bb1e-efe58b81e614" config-ref="HTTP_Listener_config" path="/go2"/>
 		<ee:transform doc:name="Transform Message" doc:id="5f44dc9f-8755-4493-b6fa-d7b28ffae393" >
 			<ee:message >
