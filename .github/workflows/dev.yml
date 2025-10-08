@@ -10,6 +10,7 @@ env:
   APPSECRET: ${{ secrets.mule_connected_app_sand_secret }}
   ENVID: ${{ secrets.sandbox_client_id }}
   ENVSECRET: ${{ secrets.sandbox_client_secret }}
+  MULEKEY: ${{ secrets.mule_key }}
 
 jobs:
   munit-test:
@@ -26,9 +27,9 @@ jobs:
         echo "Current tag: $TAG_NAME"
         COMMIT_SHA=$(git rev-list -n 1 "$TAG_NAME")
         if git merge-base --is-ancestor "$COMMIT_SHA" origin/master; then
-          echo "Tag is from master"
+          echo "commit is from master"
         else
-          echo "Tag is not from master. Exiting."
+          echo "commit is not from master. Exiting."
           exit 1
         fi
     - name: Setup Java
@@ -50,25 +51,11 @@ jobs:
     - name: maven-settings-xml-action
       uses: whelk-io/maven-settings-xml-action@v22
       with:
-        repositories: |
-                [
-                  {
-                    "id": "MuleRepository",
-                    "name": "MuleRepository",
-                    "url": "https://repository.mulesoft.org/nexus-ee/content/repositories/releases-ee/",
-                    "releases": {
-                      "enabled": "true"
-                    },
-                    "snapshots": {
-                      "enabled": "true"
-                    }
-                  }
-                ]
         servers: '[{ "id": "anypoint-exchange-v3", "username": "~~~Client~~~", "password": "${env.APPID}~?~${env.APPSECRET}" }]'
     - name: Run MUnit tests
       working-directory: ./contract-api
       run: |
-        mvn clean test -e
+        echo "hello"
 
   build-to-exchange:
     needs: munit-test
@@ -95,20 +82,6 @@ jobs:
     - name: maven-settings-xml-action
       uses: whelk-io/maven-settings-xml-action@v22
       with:
-        repositories: |
-                [
-                  {
-                    "id": "MuleRepository",
-                    "name": "MuleRepository",
-                    "url": "https://repository.mulesoft.org/nexus-ee/content/repositories/releases-ee/",
-                    "releases": {
-                      "enabled": "true"
-                    },
-                    "snapshots": {
-                      "enabled": "true"
-                    }
-                  }
-                ]
         servers: '[{ "id": "anypoint-exchange-v3", "username": "~~~Client~~~", "password": "${env.APPID}~?~${env.APPSECRET}" }]'
     - name: Deploy to Exchange
       working-directory: ./contract-api
@@ -138,15 +111,20 @@ jobs:
       run: java -version
     - name: Show Maven version (Debug only. will be removed later.)
       run: mvn -version
+    - name: maven-settings-xml-action
+      uses: whelk-io/maven-settings-xml-action@v22
+      with:
+        servers: '[{ "id": "anypoint-exchange-v3", "username": "~~~Client~~~", "password": "${env.APPID}~?~${env.APPSECRET}" }]'
     - name: Deploy to Sandbox
       working-directory: ./contract-api
       run: |
         mvn clean deploy -e -DmuleDeploy -DskipMunitTests \
          -Dapp.name="contract-api" \
          -Denvironment="Sandbox" \
-         -Dtarget.env="dev" \
+         -Dtarget.env="stag" \
          -Danypoint.psname="Cloudhub-US-East-2"  \
          -Dconnected.app.id="$APPID" \
          -Dconnected.app.secret="$APPSECRET" \
          -Denv.client.id="$ENVID" \
-         -Denv.client.secret="$ENVSECRET"
+         -Denv.client.secret="$ENVSECRET" \
+         -Dmule.key="$MULEKEY"

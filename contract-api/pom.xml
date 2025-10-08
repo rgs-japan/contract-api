@@ -2,9 +2,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>52ad756c-1218-4d9e-ae79-ec459ee058e9</groupId>
+	<groupId>3fe32aba-c302-46fc-9f15-b5c1433a251f</groupId>
 	<artifactId>contract-api</artifactId>
-	<version>${mule.app.ver}</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<packaging>mule-application</packaging>
 
 	<name>contract-api</name>
@@ -13,8 +13,8 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-		<app.runtime>4.9.6</app.runtime>
-		<mule.maven.plugin.version>4.3.0</mule.maven.plugin.version>
+		<app.runtime>4.9.7</app.runtime>
+		<mule.maven.plugin.version>4.5.1</mule.maven.plugin.version>
 		<munit.version>3.4.0</munit.version>
 		<mule.app.ver>1.0.0-SNAPSHOT</mule.app.ver>
 	</properties>
@@ -47,9 +47,9 @@
 						<vCores>0.1</vCores>
 						<deploymentSettings>
 							<http>
-							<inbound>
-								<publicUrl>http://www1.test.com/contract-api,http://www2.test.com/contract-api,http://www3.test.com/contract-api,http://www4.test.com/contract-api</publicUrl>
-							</inbound>
+								<inbound>
+									<publicUrl>http://www1.test.com/contract-api,http://www2.test.com/contract-api,http://www3.test.com/contract-api,http://www4.test.com/contract-api</publicUrl>
+								</inbound>
 							</http>
 						</deploymentSettings>
 						<properties>
@@ -57,6 +57,7 @@
 							<muleAppVer>${mule.app.ver}</muleAppVer>
 							<anypoint.platform.client_id>${env.client.id}</anypoint.platform.client_id>
 							<anypoint.platform.client_secret>${env.client.secret}</anypoint.platform.client_secret>
+							<mule.key>${mule.key}</mule.key>
 						</properties>
 					</cloudhub2Deployment>
 					<classifier>---- select project type ----</classifier>
@@ -77,17 +78,17 @@
 					</execution>
 				</executions>
 				<configuration>
-                      <coverage>
-                          <runCoverage>true</runCoverage>
-                          <failBuild>false</failBuild>
-                          <requiredApplicationCoverage>100</requiredApplicationCoverage>
-                          <requiredResourceCoverage>100</requiredResourceCoverage>
-                          <requiredFlowCoverage>100</requiredFlowCoverage>
-                          <formats>
-                              <format>console</format>
-                              <format>html</format>
-                          </formats>
-                      </coverage>
+					<coverage>
+						<runCoverage>true</runCoverage>
+						<failBuild>false</failBuild>
+						<requiredApplicationCoverage>100</requiredApplicationCoverage>
+						<requiredResourceCoverage>100</requiredResourceCoverage>
+						<requiredFlowCoverage>100</requiredFlowCoverage>
+						<formats>
+							<format>console</format>
+							<format>html</format>
+						</formats>
+					</coverage>
 				</configuration>
 			</plugin>
 		</plugins>
@@ -104,6 +105,19 @@
 			<groupId>org.mule.connectors</groupId>
 			<artifactId>mule-sockets-connector</artifactId>
 			<version>1.2.5</version>
+			<classifier>mule-plugin</classifier>
+		</dependency>
+		<dependency>
+			<groupId>3fe32aba-c302-46fc-9f15-b5c1433a251f</groupId>
+			<artifactId>raml-01</artifactId>
+			<version>1.0.1</version>
+			<classifier>raml</classifier>
+			<type>zip</type>
+		</dependency>
+		<dependency>
+			<groupId>org.mule.modules</groupId>
+			<artifactId>mule-apikit-module</artifactId>
+			<version>1.11.6</version>
 			<classifier>mule-plugin</classifier>
 		</dependency>
 		<dependency>
@@ -125,6 +139,12 @@
 			<artifactId>assertions</artifactId>
 			<version>1.2.1</version>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.mulesoft.modules</groupId>
+			<artifactId>mule-secure-configuration-property-module</artifactId>
+			<version>1.2.7</version>
+			<classifier>mule-plugin</classifier>
 		</dependency>
 	</dependencies>
 
